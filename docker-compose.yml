@@ -1,0 +1,24 @@
+services:
+  # Front-end service (e.g., React, Angular, etc.)
+  front-end:
+    build:
+      context: ./front-end  # Path to the front-end Dockerfile
+      dockerfile: Dockerfile # Optional: only needed if the Dockerfile has a different name
+    container_name: front-end
+    ports:
+      - "4173:4173"  # Adjust port as needed
+    depends_on:
+      - back-end
+ 
+  # Back-end service (e.g., Node.js, Python, etc.)
+  back-end:
+    build:
+      context: ./back-end  # Path to the back-end Dockerfile
+      dockerfile: Dockerfile # Optional: only needed if the Dockerfile has a different name
+    container_name: back-end
+    ports:
+      - "5000:5000"  # Adjust port as needed
+    environment:
+      - DATABASE_URL=postgresql://postgres.oiixklzrwhwkltdqrnrk:AZlcy6sXsBIIxax3@aws-0-ap-south-1.pooler.supabase.com:5432/postgres  # Connection string for Postgres
+      - JWT_SECRET=b27f946e2a1b3e5d9c8e4a7f2d5a8c6f7b3e9d4a1f2c5b6d8e9a7c3d2b4f1e5
+      - PORT=5000
