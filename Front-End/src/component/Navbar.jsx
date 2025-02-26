@@ -24,7 +24,7 @@ const Navbar = () => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxd1qxTdtZ0f-uAjQeylhy2H8V0DHOquovAcXhJvSis8lAfIEn2SgfWsikfkVzXb-Y1C4&usqp=CAU" 
             alt="Logo" className="h-15 w-20 mr-2 ml-10" 
           />
-          <span className={`text-2xl font-bold ml-2 ${textColor}`}>Ride-Sharing</span>
+          <span className={`text-2xl font-bold ml-2 ${textColor}`}>JRide</span>
         </div>
 
         {/* Navigation Links */}

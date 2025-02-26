@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 const RideRequests = () => {
   const [requests, setRequests] = useState([]);
   const [rider, setRider] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRideRequests = async () => {
@@ -30,8 +32,7 @@ const RideRequests = () => {
           request.id === id ? { ...request, status: 'Booked' } : request
         )
       );
-      window.location.href = '/rideprogress';
-      window.location.reload();
+      navigate(`/rideprogress/${id}`);
     } catch (error) {
       console.error(`Error updating the ride status to ${status}:`, error);
     }

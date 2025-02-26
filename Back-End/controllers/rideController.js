@@ -64,3 +64,15 @@ exports.getAvailableRides = async (req, res) => {
     }
 };
 
+exports.getRidebyId = async (req, res) => {
+    const Id = req.params.id;
+    console.log(Id);
+    try{
+        const ride = await Ride.findByPk(Id);
+        res.json(ride);
+    }catch{
+        console.error(error);
+        res.status(500).json({ error: 'Failed to fetch ride request' });
+    }
+}
+ 
