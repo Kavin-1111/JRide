@@ -3,8 +3,7 @@ import { MapContainer, TileLayer, Marker, Polyline, useMapEvents } from "react-l
 import "leaflet/dist/leaflet.css";
 import axios from "axios";
 import L from "leaflet";
- 
-// Custom Markers
+
 const sourceIcon = new L.Icon({
   iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
   iconSize: [25, 41],
@@ -22,7 +21,7 @@ const MapComponent = ({ setSource, setDestination }) => {
   const [route, setRoute] = useState([]);
   const [selecting, setSelecting] = useState("source");
  
-  // Function to Fetch Route from OSRM API
+
   const fetchRoute = async (source, destination) => {
     if (!source || !destination) return;
  
@@ -40,14 +39,14 @@ const MapComponent = ({ setSource, setDestination }) => {
     }
   };
  
-  // Click Handler for Selecting Locations
+  
   const LocationMarker = () => {
     useMapEvents({
       click: async (e) => {
         const { lat, lng } = e.latlng;
         let updatedPositions = { ...positions };
  
-        // Reverse Geocode to Get Address
+      
         try {
           const response = await axios.get(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`
@@ -66,7 +65,7 @@ const MapComponent = ({ setSource, setDestination }) => {
           setPositions(updatedPositions);
           setSelecting(selecting === "source" ? "destination" : "source");
  
-          // Fetch Route when both source and destination are selected
+         
           if (updatedPositions.source && updatedPositions.destination) {
             fetchRoute(updatedPositions.source, updatedPositions.destination);
           }
